@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Feeding Timer</title>
+  </head>
+  <body>
+    <div class="main-container">
+      <h1>
+        Feeding Times
+        <button id="clear" class="btn btn__clear">Clear</button>
+      </h1>
+      <div class="table--container">
+        <table class="table">
+          <tr>
+            <th class="table--heading table--heading__larger">Start Time</th>
+            <th class="table--heading">Duration</th>
+            <th class="table--heading">Side</th>
+          </tr>
+          <tbody id="feeding-time-body"></tbody>
+        </table>
+      </div>
+      <form id="timer-form" class="timer">
+        <h2 id="timer" class="timer--display">00:00:00</h2>
+        <div class="side--container">
+          <h3 class="side--title">Side</h3>
+          <label>
+            Left
+            <input type="radio" id="left" name="side" value="left" />
+          </label>
+          <label>
+            Right
+            <input type="radio" id="right" name="side" value="right" />
+          </label>
+        </div>
+        <div class="btn--container">
+          <button class="btn" id="reset-timer" disabled>
+            Reset
+          </button>
+          <button class="btn btn__large" id="start-stop-continue-timer">
+            Start
+          </button>
+          <button class="btn" id="save-timer" disabled>Save</button>
+        </div>
+      </form>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
