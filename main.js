@@ -15,13 +15,11 @@ let side;
 
 const reset = () => {
   startButton.innerText = "Start";
-  timer.innerText = "00:00:00";
+  timer.innerText = "00:00";
   clearInterval(interval);
   resetButton.disabled = true;
   saveButton.disabled = true;
   start = 0;
-  duration = new Date(0);
-  duration.setHours(0);
   running = false;
   sideSelection.forEach((radioButton) => {
     radioButton.checked = false;
@@ -54,11 +52,10 @@ const display = () => {
   let tableContents = "";
   feedings.forEach((feed) => {
     const start = new Date(feed.start);
-    const duration = new Date(feed.duration);
     const tableRow = `
     <tr class="table--row">
         <td>${start.toLocaleDateString()} ${start.toLocaleTimeString()}</td>
-        <td>${duration.toLocaleTimeString()}</td>
+        <td>${feed.duration}</td>
         <td>${feed.side ? feed.side : " "}</td>
     </tr>
   `;
@@ -81,8 +78,12 @@ startButton.addEventListener("click", (event) => {
     clearInterval(interval);
   } else {
     interval = setInterval(() => {
-      duration.setSeconds(duration.getSeconds() + 1);
-      timer.innerText = duration.toLocaleTimeString();
+      duration = Date.now() - start;
+      duration = new Date(duration);
+      const mins = duration.getMinutes() < 10 ? "0" + duration.getMinutes() : duration.getMinutes();
+      const seconds = duration.getSeconds() < 10 ? "0" + duration.getSeconds() : duration.getSeconds();
+      duration = `${mins}:${seconds}`
+      timer.innerText = duration;
     }, 1000);
   }
 });
